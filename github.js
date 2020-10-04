@@ -1,5 +1,4 @@
 const elUsers = document.querySelector("#users");
-console.log(elUsers);
 const url = "https://api.github.com";
 // fetch(`${url}/users`)
 // .then(
@@ -24,21 +23,24 @@ fetch(`${url}/users`)
     users.forEach(user => displayUser(user));
 });
 
-function displayUser(user){
+const displayUser= user => {
     const elUser = document.createElement("div");
     elUser.classList.add("user");
     const elImage = document.createElement("img");
     elImage.src = user.avatar_url;
     elUser.appendChild(elImage);
-    const elName = document.createElement("a");
-    elName.innerText = user.login;
-    elName.href = user.html_url;
-    elName.classList.add("name");
-    elUser.appendChild(elName);
+    const elUsername = document.createElement("a");
+    elUsername.innerText = user.login;
+    elUsername.href = user.html_url;
+    elUsername.classList.add("name");
+    elUser.appendChild(elUsername);
     fetch(`${url}/users/${user.login}`)
     .then(data => data.json())
     .then(user => {
         console.log(user);
+        const elName = document.createElement("p");
+        elName.innerText = user.name;
+        elUser.appendChild(elName);
     });
     elUsers.appendChild(elUser);
 }

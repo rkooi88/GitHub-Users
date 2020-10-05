@@ -14,7 +14,23 @@ const url = "https://api.github.com";
 //         }
         
 //     }
-// )
+// }
+
+//search bar functionality
+let searchBar = document.querySelector("#searchBar");
+searchBar.addEventListener("keyup", filterSearch)
+function filterSearch(){
+    let filterName = searchBar.value.toUpperCase();
+   Array.from(elUsers.children).forEach(el => {
+        if (!el.innerText.toUpperCase().includes(filterName))
+            el.style.display = "none"
+        else 
+            el.style.display = "block"
+       
+   });
+   console.log(filterName);
+        
+}
 
 fetch(`${url}/users`)
 .then(data => data.json())
@@ -37,7 +53,7 @@ const displayUser= user => {
     fetch(`${url}/users/${user.login}`)
     .then(data => data.json())
     .then(user => {
-        console.log(user);
+      //  console.log(user);
         const elName = document.createElement("p");
         elName.innerText = user.name;
         elUser.appendChild(elName);

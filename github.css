@@ -16,6 +16,17 @@ h1 {
     border-bottom: 2px solid black;
 }
 
+#searchWrapper{
+    text-align: center;
+}
+
+#searchBar{
+    padding: 9px;
+    border-radius: 5%;
+    width: 75%;
+    font-size: 16px;
+}
+
 #users{
     width: 80%;
     margin: auto;
